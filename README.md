@@ -25,8 +25,8 @@ Every transaction with a value greater than 1000 should be rejected.
   flowchart LR
     Transaction -- 1) Guarda operación con estado pendiente --> transactionDatabase[(Database)]
     Transaction -- 2) Envía evento de registro de operación --> Anti-Fraud
-    Anti-Fraud -- 3) Envía evento de cambio de estado de operación a aprobado --> Transaction
-    Anti-Fraud -- 3) Envía evento de cambio de estado de operación a rechazado --> Transaction
+    Anti-Fraud -- 3.a) Envía evento de cambio de estado de operación a aprobado --> Transaction
+    Anti-Fraud -- 3.b) Envía evento de cambio de estado de operación a rechazado --> Transaction
     Transaction -- 4) Actualiza operación con el estado recibido por Anti-Fraud --> transactionDatabase[(Database)]
 ```
 
