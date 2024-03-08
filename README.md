@@ -40,9 +40,9 @@ Every transaction with a value greater than 1000 should be rejected.
 
 Nosotros estamos brindandote un `Dockerfile` para que rápidamente puedas configurar tu entorno de desarrollo.
 
-You must have two resources:
+Deberías tener 2 recursos (a nivel de API):
 
-1. Resource to create a transaction that must containt:
+1. Recurso para crear una operación que contenga la siguiente estructura:
 
 ```json
 {
@@ -53,7 +53,7 @@ You must have two resources:
 }
 ```
 
-2. Resource to retrieve a transaction
+2. Recurso que recupera una operación
 
 ```json
 {
@@ -71,12 +71,10 @@ You must have two resources:
 
 ## Opcional
 
-You can use any approach to store transaction data but you should consider that we may deal with high volume scenarios where we have a huge amount of writes and reads for the same data at the same time. How would you tackle this requirement?
-
-You can use Graphql;
+Puede utilizar cualquier método para almacenar datos de transacciones, pero debe considerar que podemos lidiar con escenarios de gran volumen en los que tenemos una gran cantidad de escrituras y lecturas de los mismos datos al mismo tiempo. ¿Cómo abordaría este requisito?
 
 # Envía tu Resolución
 
-When you finish your challenge, after forking a repository, you **must** open a pull request to our repository. There are no limitations to the implementation, you can follow the programming paradigm, modularization, and style that you feel is the most appropriate solution.
+Cuando termines tu resolución, después de realizar el fork al repositorio, tú **must** abrir una solicitud de extracción a nuestro repositorio. No hay limitaciones para la implementación, puede seguir el paradigma de programación, la modularización y el estilo que creas que es la solución más adecuada.
 
-If you have any questions, please let us know.
+Si tienes alguna duda, por favor ponte en contacto con nosotros.
