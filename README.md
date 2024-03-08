@@ -23,11 +23,11 @@ Every transaction with a value greater than 1000 should be rejected.
 
 ```mermaid
   flowchart LR
-    Transaction -- Guarda Transacción con estado pendiente --> transactionDatabase[(Database)]
-    Transaction --Send transaction Created event--> Anti-Fraud
-    Anti-Fraud -- Send transaction Status Approved event--> Transaction
-    Anti-Fraud -- Send transaction Status Rejected event--> Transaction
-    Transaction -- Update transaction Status event--> transactionDatabase[(Database)]
+    Transaction -- 1. Guarda Operación con estado pendiente --> transactionDatabase[(Database)]
+    Transaction -- 2. Envía evento de Operación --> Anti-Fraud
+    Anti-Fraud -- 3. (a) Envía Operación con estado aprobado --> Transaction
+    Anti-Fraud -- 3. (b) Envía Operación con estado rechazado --> Transaction
+    Transaction -- 4. Actualiza estado de Operación -> transactionDatabase[(Database)]
 ```
 
 # Stack Tecnológico a utilizar
