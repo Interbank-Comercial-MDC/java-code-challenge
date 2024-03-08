@@ -6,12 +6,12 @@ Ten en cuenta que la forma correcta de enviar tu resolución es a través de un 
 
 - [Problema](#problem)
 - [Stack Tecnológico a utilizar](#tech_stack)
-- [Envía tu Resolución](#send_us_your_challenge)
+- [Envía tu código](#send_us_your_challenge)
 
 # Problema
 
-Every time a financial transaction is created it must be validated by our anti-fraud microservice and then the same service sends a message back to update the transaction status.
-For now, we have only three transaction statuses:
+Cada vez que se crea una transacción (operación) financiera debe ser validada por nuestro microservicio antifraude (Anti-Fraud) y luego el mismo servicio envía un mensaje para actualizar el estado de la transacción.
+Por ahora, solo manejamos tres estados de operación.
 
 <ol>
   <li>pendiente</li>
@@ -19,7 +19,7 @@ For now, we have only three transaction statuses:
   <li>rechazado</li>  
 </ol>
 
-Every transaction with a value greater than 1000 should be rejected.
+Toda transacción con un valor mayor a 1000 debe ser rechazada.
 
 ```mermaid
   flowchart LR
@@ -73,8 +73,8 @@ Deberías tener 2 recursos (a nivel de API):
 
 Puede utilizar cualquier método para almacenar datos de transacciones, pero debe considerar que podemos lidiar con escenarios de gran volumen en los que tenemos una gran cantidad de escrituras y lecturas de los mismos datos al mismo tiempo. ¿Cómo abordaría este requisito?
 
-# Envía tu Resolución
+# Envía tu código
 
-Cuando termines tu resolución, después de realizar el fork al repositorio, tú **must** abrir una solicitud de extracción a nuestro repositorio. No hay limitaciones para la implementación, puede seguir el paradigma de programación, la modularización y el estilo que creas que es la solución más adecuada.
+Cuando termines tu resolución, después de realizar el fork al repositorio, tú **debes** abrir una solicitud de extracción (PR) a nuestro repositorio. No hay limitaciones para la implementación, puede seguir el paradigma de programación, la modularización y el estilo que creas que es la solución más adecuada.
 
 Si tienes alguna duda, por favor ponte en contacto con nosotros.
