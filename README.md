@@ -34,7 +34,7 @@ Toda transacción con un valor mayor a 1000 debe ser rechazada.
 
 <ol>
   <li>Java - Spring Framework - Spring Boot</li>
-  <li>BD Oracle</li>
+  <li>BD PostgreSQL</li>
   <li>Gestor de colas Kafka</li>    
 </ol>
 
