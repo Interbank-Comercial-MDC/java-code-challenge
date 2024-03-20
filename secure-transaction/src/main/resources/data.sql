@@ -1,0 +1,2 @@
+INSERT INTO account (account_external_id, account_number) VALUES ('0b7a4448-7a9a-400b-9786-f3efd6cba72b', '12345678901234567890123456789012');
+INSERT INTO account (account_external_id, account_number) VALUES ('9a94e0ae-5c05-4aae-bad1-d3c7b5231c18', '12345678901234567890123456789013');
