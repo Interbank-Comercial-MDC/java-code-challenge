@@ -5,5 +5,5 @@ import lombok.Builder;
 import java.util.UUID;
 
 @Builder
-public record TransactionResponseDto(UUID transactionExternalId, String status) {
+public record TransactionResponseDto(UUID transactionExternalId, String transactionStatus) {
 }

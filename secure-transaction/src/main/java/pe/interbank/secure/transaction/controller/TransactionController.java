@@ -21,17 +21,16 @@ public class TransactionController {
   @PostMapping
   public HttpEntity<TransactionResponseDto> createTransaction(@RequestBody TransactionRequestDto transactionRequestDto) throws Exception {
 
-    var response = transactionService.createTransaction(transactionRequestDto);
+    TransactionResponseDto response = transactionService.createTransaction(transactionRequestDto);
 
-    return ResponseEntity.ok(TransactionResponseDto.builder()
-                                        .transactionExternalId(response.getTransactionExternalId())
-                                        .status("OK")
-                                        .build());
+    return ResponseEntity.ok(response);
   }
 
   @GetMapping("/{transactionExternalId}")
-  public HttpEntity<TransactionDetailsResponseDto> getTransaction(@PathVariable UUID transactionExternalId) {
+  public HttpEntity<TransactionDetailsResponseDto> getTransaction(@PathVariable UUID transactionExternalId) throws Exception {
 
-    return ResponseEntity.ok(TransactionDetailsResponseDto.builder().build());
+    TransactionDetailsResponseDto response = transactionService.getTransaction(transactionExternalId);
+
+    return ResponseEntity.ok(response);
   }
 }

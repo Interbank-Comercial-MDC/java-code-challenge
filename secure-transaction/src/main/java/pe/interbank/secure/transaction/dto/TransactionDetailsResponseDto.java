@@ -1,7 +1,7 @@
 package pe.interbank.secure.transaction.dto;
 
 import lombok.Builder;
-import org.hibernate.resource.transaction.spi.TransactionStatus;
+import pe.interbank.secure.transaction.model.TransactionStatus;
 import pe.interbank.secure.transaction.model.TransactionType;
 
 import java.math.BigDecimal;
@@ -10,8 +10,8 @@ import java.util.UUID;
 
 @Builder
 public record TransactionDetailsResponseDto(UUID transactionExternalId,
-                                            TransactionType transactionType,
-                                            TransactionStatus transactionStatus,
+                                            TransactionTypeDto transactionType,
+                                            TransactionStatusDto transactionStatus,
                                             BigDecimal value,
                                             LocalDateTime createdAt) {
 }
