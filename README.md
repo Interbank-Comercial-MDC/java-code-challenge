@@ -78,3 +78,37 @@ Puede utilizar cualquier método para almacenar datos de transacciones, pero deb
 Cuando termines tu resolución, después de realizar el fork al repositorio, tú **debes** abrir una solicitud de extracción (PR) a nuestro repositorio. No hay limitaciones para la implementación, puede seguir el paradigma de programación, la modularización y el estilo que creas que es la solución más adecuada.
 
 Si tienes alguna duda, por favor ponte en contacto con nosotros.
+
+
+===============
+controller
+TransactionController.java
+
+dto
+TransactionCreateRequest.java
+TransactionUpdateRequest.java
+TransactionResponse.java
+
+model
+Transaction.java
+TransferType.java
+TransactionStatus.java
+
+repository
+TransactionRepository.java
+
+service
+TransactionService.java
+AntiFraudService.java
+
+serviceImpl
+TransactionServiceImpl.java
+AntiFraudServiceImpl.java
+
+kafka
+KafkaConfig.java
+AntiFraudEvent.java
+
+exception
+TransactionNotFoundException.java
+InvalidTransactionException.java
