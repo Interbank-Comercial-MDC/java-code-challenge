@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /anti-fraud
+spring:
+  application:
+    name: anti-fraud
+  main:
+    allow-bean-definition-overriding: true
