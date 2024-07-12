@@ -1,0 +1,16 @@
+generado para consumir los end-point
+
+archivo ==> thunder-collection_retoInterbank
+
+query para registro en postgres: 
+
+archivo ==> QUERY-TABLAS
+
+
+se abordo el opcional :
+Puede utilizar cualquier método para almacenar datos de transacciones, 
+pero debe considerar que podemos lidiar con escenarios de gran volumen en los que tenemos una gran cantidad de escrituras
+ y lecturas de los mismos datos al mismo tiempo. ¿Cómo abordaría este requisito?
+
+RESPUESTA: en terminos del desarrollo se oriento a que sea programacion reactiva con webflux y usando R2DBC para poder manejar flujos 
+de datos

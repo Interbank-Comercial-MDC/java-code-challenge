@@ -1,0 +1,47 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "retoInterbank",
+    "collectionId": "b54721d8-0aad-48b6-bf93-cbffeedf7a71",
+    "dateExported": "2024-07-12T17:25:34.782Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "71f691ce-b40f-484c-abd5-688fc6659a38",
+            "colId": "b54721d8-0aad-48b6-bf93-cbffeedf7a71",
+            "containerId": "",
+            "name": "http://localhost:8080/transactions Copy",
+            "url": "http://localhost:8080/transactions/7ac7e1b9-dd85-4e70-918c-338cea903fd1",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-07-12T17:25:10.517Z",
+            "modified": "2024-07-12T17:25:10.517Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"accountExternalIdDebit\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n  \"accountExternalIdCredit\": \"c6218d00-564f-4c7e-8d70-70dd750d5337\",\n  \"transactionTypeId\": 1,\n  \"value\": 100.0\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "ab0006e9-05e1-4a58-9bc0-903b28d4c360",
+            "colId": "b54721d8-0aad-48b6-bf93-cbffeedf7a71",
+            "containerId": "",
+            "name": "http://localhost:8080/transactions",
+            "url": "http://localhost:8080/transactions",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-07-12T17:25:25.285Z",
+            "modified": "2024-07-12T17:25:25.285Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"accountExternalIdDebit\": \"f47ac10b-58cc-4372-a567-0e02b2c3d479\",\n  \"accountExternalIdCredit\": \"c6218d00-564f-4c7e-8d70-70dd750d5337\",\n  \"transactionTypeId\": 1,\n  \"value\": 100.0\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ],
+    "ref": "M0aP8DwlDfPfWJZbZUYBiCYAubERZaBapusziFFpjxHZeVN-6dQyYp4Sgg4XD24EMVwQFa3jJl1n7yMw-Dq19g"
+}
