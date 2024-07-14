@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: challenge-transaction
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/challenge_app
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    hibernate:
+        ddl-auto: update
+    show-sql: false
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 60000
+    database: 0
+    password: REDISPSWD
+
+kafka:
+  bootstrap-servers: 127.0.0.1:9092
+  retry-interval: 10_000
+  retry-attempts: 1
+  group-id: challenge-groupLocal
+  topic:
+    transactions: transactions
+    transactions-state: transactionsState
