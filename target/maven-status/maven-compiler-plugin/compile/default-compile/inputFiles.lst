@@ -1,0 +1,9 @@
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/AntifraudeApplication.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/application/ports/in/FinancialTransactionUseCase.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/application/ports/out/LoadFinancialTransactionPort.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/application/service/FinancialTransactionService.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/domain/dto/FinancialTransactionDTO.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/domain/model/FinancialTransaction.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/infrastructure/adapters/in/rest/FinancialTransactionController.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/infrastructure/adapters/out/persistence/FinancialTransactionAdapter.java
+/Users/jpachecc/Documents/IBK/java-code-challenge/src/main/java/com/ibk/antifraude/infrastructure/adapters/out/persistence/FinancialTransactionRepository.java

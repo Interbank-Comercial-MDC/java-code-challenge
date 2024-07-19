@@ -1,0 +1,7 @@
+changeLogFile: src/main/resources/db/changelog/master.xml
+logging: debug
+driver: org.postgresql.Driver
+url: jdbc:postgresql://127.0.0.1:5432/example-sbl
+
+username: postgres
+password: postgres

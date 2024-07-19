@@ -1,0 +1,13 @@
+com/ibk/antifraude/infrastructure/adapters/in/rest/FinancialTransactionController.class
+com/ibk/antifraude/domain/model/FinancialTransaction.class
+com/ibk/antifraude/AntifraudeApplication.class
+com/ibk/antifraude/application/ports/out/LoadFinancialTransactionPort.class
+com/ibk/antifraude/domain/dto/FinancialTransactionDTO$TransactionType.class
+com/ibk/antifraude/domain/dto/FinancialTransactionDTO.class
+com/ibk/antifraude/application/ports/in/FinancialTransactionUseCase.class
+com/ibk/antifraude/domain/dto/FinancialTransactionDTO$TransactionStatus.class
+com/ibk/antifraude/application/service/FinancialTransactionService.class
+com/ibk/antifraude/domain/dto/FinancialTransactionDTO$FinancialTransactionDTOBuilder.class
+com/ibk/antifraude/domain/model/FinancialTransaction$FinancialTransactionBuilder.class
+com/ibk/antifraude/infrastructure/adapters/out/persistence/FinancialTransactionAdapter.class
+com/ibk/antifraude/infrastructure/adapters/out/persistence/FinancialTransactionRepository.class
