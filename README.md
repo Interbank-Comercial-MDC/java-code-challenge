@@ -78,3 +78,51 @@ Puede utilizar cualquier método para almacenar datos de transacciones, pero deb
 Cuando termines tu resolución, después de realizar el fork al repositorio, tú **debes** abrir una solicitud de extracción (PR) a nuestro repositorio. No hay limitaciones para la implementación, puede seguir el paradigma de programación, la modularización y el estilo que creas que es la solución más adecuada.
 
 Si tienes alguna duda, por favor ponte en contacto con nosotros.
+
+
+# Curls usados
+## caso 1: cuando el valor es mayor a 1000
+
+curl --location --request POST 'http://localhost:8081/transactions' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accountExternalIdDebit": "feae0e99-2050-4b2c-b344-4ca093ade411",
+    "accountExternalIdCredit": "17b67b9b-8dd8-413e-9ede-c9451ad2363d",
+    "transferTypeId": 1,
+    "value": 1200.00
+}'
+
+## caso 2: cuando el valor es menor a 1000
+curl --location --request POST 'http://localhost:8081/transactions' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accountExternalIdDebit": "feae0e99-2050-4b2c-b344-4ca093ade411",
+    "accountExternalIdCredit": "17b67b9b-8dd8-413e-9ede-c9451ad2363d",
+    "transferTypeId": 1,
+    "value": 750.00
+}'
+
+## visualizar una transacción
+curl --location --request GET 'http://localhost:8081/transactions/49428321-8728-4780-a114-28c5ecb97713'
+
+
+
+## captura de como llegaba la data a los topicos (se uso la herramienta Offset Explorer)
+![image](https://github.com/user-attachments/assets/cd17b479-e458-40b1-830d-c4f99ce2e9f2)
+
+## sql - creacion de tabla transactions
+<pre>
+CREATE TABLE 
+    transactions 
+    ( 
+        id                         CHARACTER VARYING NOT NULL, 
+        account_external_id_debit  CHARACTER VARYING, 
+        account_external_id_credit CHARACTER VARYING, 
+        transfer_type_id           INTEGER, 
+        value                      NUMERIC, 
+        status                     CHARACTER VARYING, 
+        created_at                 TIMESTAMP(6) WITH TIME ZONE, 
+        PRIMARY KEY (id) 
+    );
+
+</pre>
