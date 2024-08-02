@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: challenge
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/estrasys_prod
+  security:
+    user:
+      name: admin
+      password: admin
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+server:
+  port: 8082
