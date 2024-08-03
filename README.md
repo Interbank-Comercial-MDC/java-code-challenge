@@ -1,80 +1,36 @@
-# Reto de programación en Java :rocket:
+# Proyecto de Microservicios
 
-El reto de código que hemos elaborado nos permitirá conocer tus poderosas habilidades de codificación :smile:. 
+Este proyecto contiene dos microservicios: `ms-transaction` y `ms-anti-fraud`. A continuación, se detallan los pasos para ejecutar el proyecto utilizando Docker y acceder a la documentación Swagger de `ms-transaction`.
 
-Ten en cuenta que la forma correcta de enviar tu resolución es a través de un PR :wink: ... ¡Que te diviertas!
+## Requisitos Previos
 
-- [Problema](#problem)
-- [Stack Tecnológico a utilizar](#tech_stack)
-- [Envía tu código](#send_us_your_challenge)
+- [Docker](https://www.docker.com/get-started) instalado en tu máquina.
+- [Docker Compose](https://docs.docker.com/compose/install/) instalado en tu máquina.
 
-# Problema
+## Pasos para Ejecutar el Proyecto
 
-Cada vez que se crea una transacción (operación) financiera debe ser validada por nuestro microservicio antifraude (Anti-Fraud) y luego el mismo servicio envía un mensaje para actualizar el estado de la transacción.
-Por ahora, solo manejamos tres estados de operación.
+# **Clona el Repositorio**
 
-<ol>
-  <li>pendiente</li>
-  <li>aprobado</li>
-  <li>rechazado</li>  
-</ol>
+# **Construye y Levanta los Contenedores**
 
-Toda transacción con un valor mayor a 1000 debe ser rechazada.
+    Ejecuta el siguiente comando en el directorio raíz del proyecto, donde se encuentra el archivo docker-compose.yml:
 
-```mermaid
-  flowchart LR
-    Transaction -- 1) Guarda operación con estado pendiente --> transactionDatabase[(Database)]
-    Transaction -- 2) Envía evento de registro de operación --> Anti-Fraud
-    Anti-Fraud -- 3.a) Envía evento de cambio de estado de operación a aprobado --> Transaction
-    Anti-Fraud -- 3.b) Envía evento de cambio de estado de operación a rechazado --> Transaction
-    Transaction -- 4) Actualiza operación con el estado recibido por Anti-Fraud --> transactionDatabase[(Database)]
-```
+docker-compose up --build
+	
+	Este comando construirá las imágenes necesarias y levantará los contenedores definidos en el archivo docker-compose.yml.
 
-# Stack Tecnológico a utilizar
+# **Verifica que los Servicios Estén Corriendo**
 
-<ol>
-  <li>Java - Spring Framework - Spring Boot</li>
-  <li>BD PostgreSQL</li>
-  <li>Gestor de colas Kafka</li>    
-</ol>
+Puedes verificar que los contenedores están corriendo usando:
 
-Nosotros estamos brindandote un `Dockerfile` para que rápidamente puedas configurar tu entorno de desarrollo.
+docker ps
 
-Deberías tener 2 recursos (a nivel de API):
+Deberías ver contenedores para postgres, zookeeper, kafka, ms-transaction y ms-anti-fraud.
 
-1. Recurso para crear una operación que contenga la siguiente estructura:
+# **Accede a la Documentación Swagger de ms-transaction**
 
-```json
-{
-  "accountExternalIdDebit": "Guid",
-  "accountExternalIdCredit": "Guid",
-  "tranferTypeId": 1,
-  "value": 120
-}
-```
+La documentación Swagger para el microservicio ms-transaction está disponible en la siguiente URL:
 
-2. Recurso que recupera una operación
+http://localhost:8181/webjars/swagger-ui/index.html
 
-```json
-{
-  "transactionExternalId": "Guid",
-  "transactionType": {
-    "name": ""
-  },
-  "transactionStatus": {
-    "name": ""
-  },
-  "value": 120,
-  "createdAt": "Date"
-}
-```
-
-## Opcional
-
-Puede utilizar cualquier método para almacenar datos de transacciones, pero debe considerar que podemos lidiar con escenarios de gran volumen en los que tenemos una gran cantidad de escrituras y lecturas de los mismos datos al mismo tiempo. ¿Cómo abordaría este requisito?
-
-# Envía tu código
-
-Cuando termines tu resolución, después de realizar el fork al repositorio, tú **debes** abrir una solicitud de extracción (PR) a nuestro repositorio. No hay limitaciones para la implementación, puede seguir el paradigma de programación, la modularización y el estilo que creas que es la solución más adecuada.
-
-Si tienes alguna duda, por favor ponte en contacto con nosotros.
+Accede a esta URL en tu navegador para ver todos los endpoints disponibles y sus detalles.

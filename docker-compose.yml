@@ -1,5 +1,5 @@
 version: "3.7"
-services:
+services:    
   postgres:
     image: postgres:14
     ports:
@@ -7,22 +7,64 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    networks:
+      - app-net
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
   zookeeper:
     image: confluentinc/cp-zookeeper:5.5.3
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - app-net
   kafka:
     image: confluentinc/cp-enterprise-kafka:5.5.3
     depends_on: [zookeeper]
     environment:
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_BROKER_ID: 1
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_JMX_PORT: 9991
     ports:
+      - 29092:29092
       - 9092:9092
+    networks:
+      - app-net
+  ms-transaction:
+    build:
+      context: .
+      dockerfile: ms-transaction/Dockerfile
+    container_name: ms-transaction
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8181:8080"
+    networks:
+      - app-net
+  ms-anti-fraud:
+    build:
+      context: .
+      dockerfile: ms-anti-fraud/Dockerfile
+    container_name: ms-anti-fraud
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - kafka
+    ports:
+      - "8182:8080"
+    networks:
+      - app-net 
+networks:
+  app-net:
+    driver: bridge
 volumes:
   oracle-data:
   oracle-backup:

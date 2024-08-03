@@ -1,0 +1,56 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.2'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.interbank.pe'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter'
+
+	compileOnly 'org.projectlombok:lombok'
+
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'org.postgresql:postgresql'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webflux-ui', version: '2.5.0'
+	implementation group: 'org.springframework.data', name: 'spring-data-relational', version: '3.3.0'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-r2dbc', version: '3.3.0'
+	implementation group: 'org.postgresql', name: 'r2dbc-postgresql', version: '1.0.5.RELEASE'
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	implementation 'org.springframework.kafka:spring-kafka'
+
+	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+bootJar {
+	archiveFileName = 'ms-transaction.jar'
+}
