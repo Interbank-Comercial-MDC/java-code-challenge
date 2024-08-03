@@ -9,9 +9,9 @@ Este proyecto contiene dos microservicios: `ms-transaction` y `ms-anti-fraud`. A
 
 ## Pasos para Ejecutar el Proyecto
 
-### **Clona el Repositorio**
+### **1. Clona el Repositorio**
 
-### **Construye y Levanta los Contenedores**
+### **2. Construye y Levanta los Contenedores**
 
 Ejecuta el siguiente comando en el directorio raíz del proyecto, donde se encuentra el archivo docker-compose.yml:
 
@@ -19,7 +19,7 @@ Ejecuta el siguiente comando en el directorio raíz del proyecto, donde se encue
 	
 Este comando construirá las imágenes necesarias y levantará los contenedores definidos en el archivo docker-compose.yml.
 
-### **Verifica que los Servicios Estén Corriendo**
+### **3. Verifica que los Servicios Estén Corriendo**
 
 Puedes verificar que los contenedores están corriendo usando:
 
@@ -27,7 +27,7 @@ Puedes verificar que los contenedores están corriendo usando:
 
 Deberías ver contenedores para postgres, zookeeper, kafka, ms-transaction y ms-anti-fraud.
 
-### **Accede a la Documentación Swagger de ms-transaction**
+### **4. Accede a la Documentación Swagger de ms-transaction**
 
 La documentación Swagger para el microservicio ms-transaction está disponible en la siguiente URL:
 
