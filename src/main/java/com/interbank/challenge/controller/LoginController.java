@@ -7,6 +7,7 @@ import com.interbank.challenge.entity.dto.response.MessageResponse;
 import com.interbank.challenge.entity.dto.response.SigninResponse;
 import com.interbank.challenge.service.UsuarioService;
 import com.interbank.challenge.util.Constantes;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,7 @@ public class LoginController {
     private UsuarioService usuarioService;
 
     @PostMapping("/signin")
+    @Operation(summary = "Metodo signin", description = "Devuelve el token en jwt")
     public Mono<ResponseEntity<?>> createAuthenticationToken(@Valid @RequestBody SigninRequest signinRequest) {
         return usuarioService.findByUsername(signinRequest.getUsername())
                 .flatMap(userDetails -> {
@@ -54,6 +56,7 @@ public class LoginController {
     }
 
     @PostMapping("/signup")
+    @Operation(summary = "Metodo signup", description = "Registra un Usuario en la base de datos")
     public Mono<ResponseEntity<MessageResponse>> saveUser(@RequestBody UsuarioDocument user) {
 
         return usuarioService.findByUsername(user.getUsername())
@@ -81,6 +84,7 @@ public class LoginController {
     }
 
     @PostMapping("/listuser")
+    @Operation(summary = "Metodo listuser", description = "Lista de Usuario en la base de datos")
     public Mono<ResponseEntity<?>> listuser(@RequestHeader("Authorization") String token, @Valid @RequestBody SigninRequest signinReques) {
 
         if (token.startsWith("Bearer ")) {

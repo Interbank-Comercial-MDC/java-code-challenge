@@ -1,0 +1,121 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8082
+  description: Generated server url
+paths:
+  /api/login/signup:
+    post:
+      tags:
+      - login-controller
+      summary: Metodo signup
+      description: Registra un Usuario en la base de datos
+      operationId: saveUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UsuarioDocument"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+  /api/login/signin:
+    post:
+      tags:
+      - login-controller
+      summary: Metodo signin
+      description: Devuelve el token en jwt
+      operationId: createAuthenticationToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SigninRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/login/listuser:
+    post:
+      tags:
+      - login-controller
+      summary: Metodo listuser
+      description: Lista de Usuario en la base de datos
+      operationId: listuser
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SigninRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+components:
+  schemas:
+    RoleDocument:
+      type: object
+      properties:
+        id:
+          type: string
+        role:
+          type: string
+        date:
+          type: string
+          format: date
+    UsuarioDocument:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        locked:
+          type: boolean
+        disable:
+          type: boolean
+        roleDocument:
+          $ref: "#/components/schemas/RoleDocument"
+    MessageResponse:
+      type: object
+      properties:
+        codeResponse:
+          type: integer
+          format: int32
+        messageResponse:
+          type: string
+    SigninRequest:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string

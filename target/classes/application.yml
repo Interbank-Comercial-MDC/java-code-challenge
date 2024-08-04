@@ -17,3 +17,18 @@ spring:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 server:
   port: 8082
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: info
+        security: DEBUG
+      hibernate: error
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
