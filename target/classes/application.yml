@@ -1,9 +1,14 @@
+app:
+  jwt:
+    secret: $2y$10$dJMr85s.761OiPWe.m2nRem3GCWiTWQmuPGY4MpayC7z6DH6LC4v2
+    expirationMs: 300000 #5min
+
 spring:
   application:
     name: challenge
   data:
     mongodb:
-      uri: mongodb://localhost:27017/estrasys_prod
+      uri: mongodb://localhost:27017/challenge_prod
   security:
     user:
       name: admin

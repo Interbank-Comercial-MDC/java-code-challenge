@@ -1,3 +1,8 @@
+app:
+  jwt:
+    secret: $2y$10$dJMr85s.761OiPWe.m2nRem3GCWiTWQmuPGY4MpayC7z6DH6LC4v2
+    expirationMs: 300000 #5min
+
 spring:
   application:
     name: challenge
