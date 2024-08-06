@@ -32,6 +32,7 @@ public class LoginController {
     @PostMapping("/signin")
     @Operation(summary = "Metodo signin", description = "Devuelve el token en jwt")
     public Mono<ResponseEntity<?>> createAuthenticationToken(@Valid @RequestBody SigninRequest signinRequest) {
+
         return usuarioService.findByUsername(signinRequest.getUsername())
                 .flatMap(userDetails -> {
                     if (userDetails != null && usuarioService.comparePasswords(signinRequest.getPassword(), userDetails.getPassword())) {
