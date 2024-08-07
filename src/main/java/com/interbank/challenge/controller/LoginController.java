@@ -6,7 +6,7 @@ import com.interbank.challenge.entity.dto.request.SigninRequest;
 import com.interbank.challenge.entity.dto.response.MessageResponse;
 import com.interbank.challenge.entity.dto.response.SigninResponse;
 import com.interbank.challenge.service.UsuarioService;
-import com.interbank.challenge.util.Constantes;
+import com.interbank.challenge.util.Constante;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class LoginController {
                         String jwt = jwtUtil.generateToken(signinRequest.getUsername());
                         return Mono.just(ResponseEntity.ok(SigninResponse.builder()
                                 .accessToken(jwt)
-                                .tokenType(Constantes.BEARER)
+                                .tokenType(Constante.BEARER)
                                 .id(userDetails.getId())
                                 .username(signinRequest.getUsername())
                                 .email(userDetails.getEmail())
@@ -50,7 +50,7 @@ public class LoginController {
                     } else {
                         return Mono.just(ResponseEntity.status(401).body(MessageResponse.builder()
                                 .codeResponse(401)
-                                .messageResponse(Constantes.INVALID_CREDENTIAL)
+                                .messageResponse(Constante.INVALID_CREDENTIAL)
                                 .build()));
                     }
                 });
@@ -75,7 +75,6 @@ public class LoginController {
                                         .build()))
                                 .onErrorResume(e -> {
                                     System.err.println("Error saving user: " + e.getMessage());
-                                    e.printStackTrace();
                                     return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(MessageResponse.builder()
                                             .codeResponse(HttpStatus.INTERNAL_SERVER_ERROR.value())
                                             .messageResponse("Service error")

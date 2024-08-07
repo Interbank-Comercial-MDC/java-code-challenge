@@ -1,5 +1,4 @@
 package com.interbank.challenge.service;
-;
 import com.interbank.challenge.entity.UsuarioDocument;
 import com.interbank.challenge.reporitory.RoleRepository;
 import com.interbank.challenge.reporitory.UsuarioRepository;

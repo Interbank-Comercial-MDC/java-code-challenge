@@ -18,7 +18,6 @@ public class TransactionController {
     @PostMapping("/save")
     @Operation(summary = "Metodo createTransaction", description = "Crea una operación")
     public Mono<TransactionDocument> createTransaction(@RequestHeader("Authorization") String token, @Valid  @RequestBody TransactionDocument transaction) {
-        System.out.println("****************************** ingreso createTransaction ***************************");
         return transactionService.createTransaction(transaction);
 
     }
@@ -26,7 +25,6 @@ public class TransactionController {
     @GetMapping("/list/{id}")
     @Operation(summary = "Metodo getTransaction", description = "Devuelve una operacion")
     public Mono<TransactionDocument> getTransaction(@RequestHeader("Authorization") String token, @Valid @PathVariable String id) {
-        System.out.println("****************************** ingreso id ***************************");
         return transactionService.getTransactionById(id);
     }
 }

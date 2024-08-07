@@ -35,6 +35,7 @@ logging:
       springframework:
         web: info
         security: DEBUG
+        kafka: DEBUG
       hibernate: error
 
 springdoc:

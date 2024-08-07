@@ -1,5 +1,6 @@
 package com.interbank.challenge.config.kafka;
 
+import com.interbank.challenge.util.Constante;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +20,8 @@ public class KafkaConsumer {
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "Interbank");
+        configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, Constante.SERVER_KAFKA );
+        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, Constante.MY_GROUP);
         configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(configProps);

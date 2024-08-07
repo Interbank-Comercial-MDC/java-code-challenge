@@ -2,7 +2,10 @@ package com.interbank.challenge.service;
 
 import com.interbank.challenge.entity.TransactionDocument;
 import com.interbank.challenge.reporitory.TransactionRepository;
+import com.interbank.challenge.util.TransactionStatus;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -14,38 +17,39 @@ public class TransactionServiceImpl implements TransactionService{
     @Autowired
     TransactionRepository transactionRepository;
 
-    private final String TOPIC = "registro-events";
+    private static final String TRANSACTION_CREATED_TOPIC = "transaction.created";
+    private static final String TRANSACTION_STATUS_UPDATED_TOPIC = "transaction.status.updated";
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
 
-    public Mono<TransactionDocument> createTransaction(TransactionDocument transaction) {
-        transaction.setTransactionStatus("pendiente");
-        transaction.setCreatedAt(LocalDate.now());
+    @Override
+    public Mono<TransactionDocument> createTransaction(TransactionDocument transactionDocument) {
 
-        System.out.println("preparando para enviar mensaje kafka");
-        kafkaTemplate.send(TOPIC, "registro de operacion");
-        System.out.println("fin mensaje kafka");
-
-        return transactionRepository.save(transaction);
-
-
+        transactionDocument.setTransactionStatus(TransactionStatus.PENDIENTE.toString());
+        transactionDocument.setCreatedAt(LocalDate.now());
+        return transactionRepository.save(transactionDocument)
+                .doOnSuccess(transaction -> kafkaTemplate.send(TRANSACTION_CREATED_TOPIC, transaction.getId()));
     }
 
-    public Mono<Void> updateTransactionStatus(String transactionId, String status) {
-        return transactionRepository.findById(transactionId)
-                .switchIfEmpty(Mono.error(new RuntimeException("Transaction not found")))
+    @Override
+    @KafkaListener(topics = TRANSACTION_STATUS_UPDATED_TOPIC)
+    public void updateTransactionStatus(ConsumerRecord<String, String> record) {
+        String transactionId = record.key();
+        String estado = record.value();
+        TransactionStatus transactionStatus = TransactionStatus.fromString(estado);
+        transactionRepository.findById(transactionId)
                 .flatMap(transaction -> {
-                    transaction.setTransactionStatus(status);
-                    return transactionRepository.save(transaction)
-                            .then(Mono.fromRunnable(() -> {
-                                kafkaTemplate.send(TOPIC, "Transaction status updated: " + transactionId + " to " + status);
-                            }));
+                    transaction.setTransactionStatus(transactionStatus.toString());
+                    return transactionRepository.save(transaction);
                 })
-                .then();
+                .doOnError(error -> System.err.println("Error al actualizar la transacción: " + error.getMessage()))
+                .doOnSuccess(transaction -> System.out.println("Transacción actualizada con éxito."))
+                .subscribe();
     }
 
+    @Override
     public Mono<TransactionDocument> getTransactionById(String transactionId) {
         return transactionRepository.findById(transactionId)
                 .switchIfEmpty(Mono.error(new RuntimeException("Lista Vacia")));
