@@ -1,6 +1,7 @@
 openapi: 3.0.1
 info:
-  title: OpenAPI definition
+  title: API OPERACIONES-MS
+  description: Servicio que registra operaciones transactionales manejando eventos en diferentes tópicos creados. Correctamente aunthenticado y autorizado para ejecución de cada recurso.
   version: v0
 servers:
 - url: http://localhost:8082
