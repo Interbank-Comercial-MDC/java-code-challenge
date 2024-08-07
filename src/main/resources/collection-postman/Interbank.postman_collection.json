@@ -11,7 +11,7 @@
 			"name": "api-challenge-ms",
 			"item": [
 				{
-					"name": "http://localhost:8082/api/login/signin - obtener token",
+					"name": "2. signin - obtener token",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -25,12 +25,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/api/login/signin",
+							"raw": "http://localhost:8083/api/login/signin",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8083",
 							"path": [
 								"api",
 								"login",
@@ -41,14 +41,44 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8082/api/transactions/save - rechazado",
+					"name": "1. signup - crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"prueba\",\r\n    \"password\" : \"prueba123\",\r\n    \"email\" : \"preuba@hotmail.com\",\r\n    \"locked\" : true,\r\n    \"disable\" : true,\r\n    \"roleDocument\" : {\r\n        \"id\" : \"663e6f02c7e1ec15a4d93e67\",\r\n        \"role\" : \"ADMIN\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/login/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"login",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. transactions/save - rechazado",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwMDQ0OTEsImV4cCI6MTcyMzAwNDc5MX0.XKTk7TJm1WOtrZSjmDsHR3XmwEIk_Qf8AK4FtlTyXRI",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwNTYyNDQsImV4cCI6MTcyMzA1NjU0NH0.sf5w_w8yjmt2YuldFL4PVPrj6FzTYlpy9cdWlZwFfzQ",
 									"type": "string"
 								}
 							]
@@ -65,12 +95,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/api/transactions/save",
+							"raw": "http://localhost:8083/api/transactions/save",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8083",
 							"path": [
 								"api",
 								"transactions",
@@ -81,14 +111,14 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8082/api/transactions/save - aprobado",
+					"name": "4. transactions/save - aprobado",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwMDQ0OTEsImV4cCI6MTcyMzAwNDc5MX0.XKTk7TJm1WOtrZSjmDsHR3XmwEIk_Qf8AK4FtlTyXRI",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwNTYyNDQsImV4cCI6MTcyMzA1NjU0NH0.sf5w_w8yjmt2YuldFL4PVPrj6FzTYlpy9cdWlZwFfzQ",
 									"type": "string"
 								}
 							]
@@ -105,12 +135,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/api/transactions/save",
+							"raw": "http://localhost:8083/api/transactions/save",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8083",
 							"path": [
 								"api",
 								"transactions",
@@ -121,7 +151,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8082/api/transactions/list",
+					"name": "5. Listar Transactions",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -131,7 +161,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwMDQ0OTEsImV4cCI6MTcyMzAwNDc5MX0.XKTk7TJm1WOtrZSjmDsHR3XmwEIk_Qf8AK4FtlTyXRI",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwNTYyNDQsImV4cCI6MTcyMzA1NjU0NH0.sf5w_w8yjmt2YuldFL4PVPrj6FzTYlpy9cdWlZwFfzQ",
 									"type": "string"
 								}
 							]
@@ -148,17 +178,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/api/transactions/list/66b2f65a83fe750de3db4986",
+							"raw": "http://localhost:8083/api/transactions/list/66b3c0a5b806f918e276d782",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8083",
 							"path": [
 								"api",
 								"transactions",
 								"list",
-								"66b2f65a83fe750de3db4986"
+								"66b3c0a5b806f918e276d782"
 							]
 						}
 					},
