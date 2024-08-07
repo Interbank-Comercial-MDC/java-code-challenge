@@ -83,25 +83,4 @@ public class LoginController {
                 );
     }
 
-    @PostMapping("/listuser")
-    @Operation(summary = "Metodo listuser", description = "Lista de Usuario en la base de datos")
-    public Mono<ResponseEntity<?>> listuser(@RequestHeader("Authorization") String token, @Valid @RequestBody SigninRequest signinReques) {
-
-        if (token.startsWith("Bearer ")) {
-            token = token.substring(7);
-        }
-
-        if (jwtUtil.validateToken(token, signinReques.getUsername())) {
-            return Mono.just(ResponseEntity.status(HttpStatus.OK).body(MessageResponse.builder()
-                    .codeResponse(HttpStatus.OK.value())
-                    .messageResponse("Successful registration")
-                    .build()));
-        } else {
-            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(MessageResponse.builder()
-                    .codeResponse(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                    .messageResponse("Service error")
-                    .build()));
-        }
-    }
-
 }

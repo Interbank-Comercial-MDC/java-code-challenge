@@ -33,7 +33,6 @@ public class SecurityConfig {
                         "/v3/api-docs.yaml",
                         "/api/login/signin",
                         "/api/login/signup",
-                        "/api/login/listuser",
                         "/api/transactions/save",
                         "/api/transactions/list/*").permitAll()
                 .anyExchange().authenticated()
