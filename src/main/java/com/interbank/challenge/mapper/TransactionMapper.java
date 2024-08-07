@@ -1,4 +1,4 @@
-package com.interbank.challenge.util;
+package com.interbank.challenge.mapper;
 
 import com.interbank.challenge.entity.TransactionDocument;
 import com.interbank.challenge.entity.dto.request.TransactionRequest;

@@ -2,8 +2,11 @@ package com.interbank.challenge.service;
 
 import com.interbank.challenge.entity.TransactionDocument;
 import com.interbank.challenge.entity.dto.request.TransactionRequest;
+import com.interbank.challenge.entity.dto.response.TransactionResponse;
+import com.interbank.challenge.entity.dto.response.TransactionType;
+import com.interbank.challenge.entity.dto.response.TypeStatus;
+import com.interbank.challenge.mapper.TransactionMapper;
 import com.interbank.challenge.reporitory.TransactionRepository;
-import com.interbank.challenge.util.TransactionMapper;
 import com.interbank.challenge.util.TransactionStatus;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +57,34 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public Mono<TransactionDocument> getTransactionById(String transactionId) {
+    public Mono<TransactionResponse> getTransactionById(String transactionId) {
         return transactionRepository.findById(transactionId)
-                .switchIfEmpty(Mono.error(new RuntimeException("Lista Vacia")));
+                .map(transaction -> {
+                    TransactionResponse response = new TransactionResponse();
+                    response.setTransactionId(transaction.getId());
+                    response.setValue(transaction.getValue());
+                    response.setDate(transaction.getCreatedAt().toString());
+
+                    TransactionType type = new TransactionType();
+                    type.setName(getTransactionTypeName(transaction.getTranferTypeId()));
+                    response.setType(type);
+
+                    TransactionStatus transactionStatus = TransactionStatus.fromString(transaction.getTransactionStatus());
+
+                    TypeStatus typeStatus = new TypeStatus();
+                    typeStatus.setName(transactionStatus.toString());
+                    response.setStatus(typeStatus);
+
+                    return response;
+                })
+                .switchIfEmpty(Mono.error(new RuntimeException("Transacción no encontrada")));
+    }
+
+    private String getTransactionTypeName(Integer typeId) {
+        switch (typeId) {
+            case 1: return "debido";
+            case 2: return "credito";
+            default: return "Unknown";
+        }
     }
 }
