@@ -1,6 +1,7 @@
 package com.interbank.challenge.controller;
 
 import com.interbank.challenge.entity.TransactionDocument;
+import com.interbank.challenge.entity.dto.request.TransactionRequest;
 import com.interbank.challenge.service.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -17,7 +18,7 @@ public class TransactionController {
 
     @PostMapping("/save")
     @Operation(summary = "Metodo createTransaction", description = "Crea una operación")
-    public Mono<TransactionDocument> createTransaction(@RequestHeader("Authorization") String token, @Valid  @RequestBody TransactionDocument transaction) {
+    public Mono<TransactionRequest> createTransaction(@RequestHeader("Authorization") String token, @Valid  @RequestBody TransactionRequest transaction) {
         return transactionService.createTransaction(transaction);
 
     }

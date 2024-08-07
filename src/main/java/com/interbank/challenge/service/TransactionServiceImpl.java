@@ -1,7 +1,9 @@
 package com.interbank.challenge.service;
 
 import com.interbank.challenge.entity.TransactionDocument;
+import com.interbank.challenge.entity.dto.request.TransactionRequest;
 import com.interbank.challenge.reporitory.TransactionRepository;
+import com.interbank.challenge.util.TransactionMapper;
 import com.interbank.challenge.util.TransactionStatus;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +21,20 @@ public class TransactionServiceImpl implements TransactionService{
 
     private static final String TRANSACTION_CREATED_TOPIC = "transaction.created";
     private static final String TRANSACTION_STATUS_UPDATED_TOPIC = "transaction.status.updated";
+    private final TransactionMapper transactionMapper = TransactionMapper.INSTANCE;
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
 
     @Override
-    public Mono<TransactionDocument> createTransaction(TransactionDocument transactionDocument) {
-
+    public Mono<TransactionRequest> createTransaction(TransactionRequest transactionRequest) {
+        TransactionDocument transactionDocument = transactionMapper.toTransactionDocument(transactionRequest);
         transactionDocument.setTransactionStatus(TransactionStatus.PENDIENTE.toString());
         transactionDocument.setCreatedAt(LocalDate.now());
         return transactionRepository.save(transactionDocument)
-                .doOnSuccess(transaction -> kafkaTemplate.send(TRANSACTION_CREATED_TOPIC, transaction.getId()));
+                .doOnSuccess(transaction -> kafkaTemplate.send(TRANSACTION_CREATED_TOPIC, transaction.getId()))
+                .map(transactionMapper::toTransactionRequest);
     }
 
     @Override
