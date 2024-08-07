@@ -1,0 +1,45 @@
+app:
+  jwt:
+    secret: $2y$10$dJMr85s.761OiPWe.m2nRem3GCWiTWQmuPGY4MpayC7z6DH6LC4v2
+    expirationMs: 300000 #5min
+
+spring:
+  application:
+    name: challenge
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/challenge_prod
+  security:
+    user:
+      name: admin
+      password: admin
+  #autoconfigure:
+    #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: myGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+server:
+  port: 8082
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: info
+        security: DEBUG
+        kafka: DEBUG
+      hibernate: error
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "66b304e8d0879a0d773e7fe3"
+  },
+  "accountExternalIdDebit": "136e4567-e89b-12d3-a456-426614174036",
+  "accountExternalIdCredit": "136e4567-e89b-12d3-a456-426614174036",
+  "tranferTypeId": 2,
+  "value": 1200,
+  "transactionStatus": "rechazado",
+  "createdAt": {
+    "$date": "2024-08-07T05:00:00.000Z"
+  },
+  "_class": "com.interbank.challenge.entity.TransactionDocument"
+},
+{
+  "_id": {
+    "$oid": "66b304f8d0879a0d773e7fe4"
+  },
+  "accountExternalIdDebit": "136e4567-e89b-12d3-a456-426614174036",
+  "accountExternalIdCredit": "136e4567-e89b-12d3-a456-426614174036",
+  "tranferTypeId": 2,
+  "value": 900,
+  "transactionStatus": "aprobado",
+  "createdAt": {
+    "$date": "2024-08-07T05:00:00.000Z"
+  },
+  "_class": "com.interbank.challenge.entity.TransactionDocument"
+}]

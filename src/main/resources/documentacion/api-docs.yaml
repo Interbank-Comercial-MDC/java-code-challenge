@@ -1,0 +1,204 @@
+openapi: 3.0.1
+info:
+  title: API OPERACIONES-MS
+  description: Servicio que registra operaciones transactionales manejando eventos en diferentes tópicos creados. Correctamente aunthenticado y autorizado para ejecución de cada recurso.
+  version: v0
+servers:
+- url: http://localhost:8082
+  description: Generated server url
+paths:
+  /api/transactions/save:
+    post:
+      tags:
+      - transaction-controller
+      summary: Metodo createTransaction
+      description: Crea una operación
+      operationId: createTransaction
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+  /api/login/signup:
+    post:
+      tags:
+      - login-controller
+      summary: Metodo signup
+      description: Registra un Usuario en la base de datos
+      operationId: saveUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UsuarioDocument"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+  /api/login/signin:
+    post:
+      tags:
+      - login-controller
+      summary: Metodo signin
+      description: Devuelve el token en jwt
+      operationId: createAuthenticationToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SigninRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/transactions/list/{id}:
+    get:
+      tags:
+      - transaction-controller
+      summary: Metodo getTransaction
+      description: Devuelve una operacion
+      operationId: getTransaction
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TransactionResponse"
+components:
+  schemas:
+    TransactionRequest:
+      required:
+      - accountCredit
+      - accountDebit
+      - type
+      - values
+      type: object
+      properties:
+        id:
+          maxLength: 36
+          minLength: 36
+          type: string
+        accountDebit:
+          maxLength: 36
+          minLength: 36
+          type: string
+        accountCredit:
+          maxLength: 36
+          minLength: 36
+          type: string
+        type:
+          type: integer
+          format: int32
+        values:
+          type: integer
+          format: int32
+        status:
+          type: string
+        date:
+          type: string
+          format: date
+    RoleDocument:
+      type: object
+      properties:
+        id:
+          type: string
+        role:
+          type: string
+        date:
+          type: string
+          format: date
+    UsuarioDocument:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        locked:
+          type: boolean
+        disable:
+          type: boolean
+        roleDocument:
+          $ref: "#/components/schemas/RoleDocument"
+    MessageResponse:
+      type: object
+      properties:
+        codeResponse:
+          type: integer
+          format: int32
+        messageResponse:
+          type: string
+    SigninRequest:
+      required:
+      - password
+      - username
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    TransactionResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        type:
+          $ref: "#/components/schemas/TransactionType"
+        status:
+          $ref: "#/components/schemas/TypeStatus"
+        value:
+          type: integer
+          format: int32
+        date:
+          type: string
+    TransactionType:
+      type: object
+      properties:
+        name:
+          type: string
+    TypeStatus:
+      type: object
+      properties:
+        name:
+          type: string

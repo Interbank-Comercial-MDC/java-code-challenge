@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "c6f08e19-66f6-43fe-b62e-dfd6f98a76dc",
+		"name": "Interbank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9325910",
+		"_collection_link": "https://lively-moon-301039.postman.co/workspace/PROY-PROYECTOS~f3143bb4-021d-48c7-8824-9d431947399d/collection/9325910-c6f08e19-66f6-43fe-b62e-dfd6f98a76dc?action=share&source=collection_link&creator=9325910"
+	},
+	"item": [
+		{
+			"name": "api-challenge-ms",
+			"item": [
+				{
+					"name": "2. signin - obtener token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"prueba\",\r\n    \"password\": \"prueba123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/login/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"login",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. signup - crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"prueba\",\r\n    \"password\" : \"prueba123\",\r\n    \"email\" : \"preuba@hotmail.com\",\r\n    \"locked\" : true,\r\n    \"disable\" : true,\r\n    \"roleDocument\" : {\r\n        \"id\" : \"663e6f02c7e1ec15a4d93e67\",\r\n        \"role\" : \"ADMIN\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/login/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"login",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. transactions/save - rechazado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwNTYyNDQsImV4cCI6MTcyMzA1NjU0NH0.sf5w_w8yjmt2YuldFL4PVPrj6FzTYlpy9cdWlZwFfzQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountDebit\": \"136e4567-e89b-12d3-a456-426614174036\",\r\n    \"accountCredit\": \"136e4567-e89b-12d3-a456-426614174036\",\r\n    \"type\": 2,\r\n    \"values\": 1200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/transactions/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"transactions",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. transactions/save - aprobado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwNTYyNDQsImV4cCI6MTcyMzA1NjU0NH0.sf5w_w8yjmt2YuldFL4PVPrj6FzTYlpy9cdWlZwFfzQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountDebit\": \"136e4567-e89b-12d3-a456-426614174036\",\r\n    \"accountCredit\": \"136e4567-e89b-12d3-a456-426614174036\",\r\n    \"type\": 2,\r\n    \"values\": 900\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/transactions/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"transactions",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Listar Transactions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEiLCJpYXQiOjE3MjMwNTYyNDQsImV4cCI6MTcyMzA1NjU0NH0.sf5w_w8yjmt2YuldFL4PVPrj6FzTYlpy9cdWlZwFfzQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/transactions/list/66b3c0a5b806f918e276d782",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"transactions",
+								"list",
+								"66b3c0a5b806f918e276d782"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

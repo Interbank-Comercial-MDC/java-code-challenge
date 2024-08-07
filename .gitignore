@@ -1,0 +1,39 @@
+# Directorios de Maven
+target/
+
+# Archivos de configuración locales
+*.iml
+.idea/
+*.classpath
+*.project
+*.settings/
+*.factorypath
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de IntelliJ
+*.ipr
+*.iws
+*.bak
+*.swp
+
+# Archivos de log
+*.log
+
+# Archivos de compilación
+*.class
+
+# Archivos de compilación de Java
+*.jar
+*.war
+*.ear
+
+# Configuración de sistema operativo
+*.swp
+.sass-cache/
+.vscode/
+
+# Archivos específicos de ambiente
+.env
