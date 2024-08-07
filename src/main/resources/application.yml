@@ -8,7 +8,8 @@ spring:
     name: challenge
   data:
     mongodb:
-      uri: mongodb://localhost:27017/challenge_prod
+      #uri: mongodb://localhost:27017/challenge_prod
+      uri: ${SPRING_DATA_MONGODB_URI}
   security:
     user:
       name: admin
@@ -16,7 +17,8 @@ spring:
   #autoconfigure:
     #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   kafka:
-    bootstrap-servers: localhost:9092
+    #bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     consumer:
       group-id: myGroup
       auto-offset-reset: earliest
@@ -26,7 +28,8 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 server:
-  port: 8082
+  #port: 8082
+  port: 8083
 
 logging:
   level:
