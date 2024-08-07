@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "66ad7a97a28fbe088fa677f2"
+  },
+  "username": "prueba",
+  "password": "$2a$10$GROKwgPpk3Bm0pkQs7zlM.1vK9JcP0HKCeunsUyYWYbIbea36Zdmm",
+  "email": "prueba@hotmail.com",
+  "locked": true,
+  "disable": true,
+  "roleDocument": {
+    "_id": {
+      "$oid": "663e6f02c7e1ec15a4d93e67"
+    },
+    "role": "ADMIN",
+    "date": {
+      "$date": "2024-08-02T05:00:00.000Z"
+    }
+  },
+  "_class": "com.interbank.challenge.entity.UsuarioDocument"
+}]

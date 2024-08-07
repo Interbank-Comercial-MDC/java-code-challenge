@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "663e6f02c7e1ec15a4d93e66"
+  },
+  "role": "USER",
+  "date": {
+    "$date": "2024-08-02T05:00:00.000Z"
+  },
+  "_class": "com.interbank.challenge.entity.RoleDocum"
+},
+{
+  "_id": {
+    "$oid": "663e6f02c7e1ec15a4d93e67"
+  },
+  "role": "ADMIN",
+  "date": {
+    "$date": "2024-08-02T05:00:00.000Z"
+  },
+  "_class": "com.interbank.challenge.entity.RoleDocument"
+},
+{
+  "_id": {
+    "$oid": "663e6f02c7e1ec15a4d93e68"
+  },
+  "role": "CUSTOMER",
+  "date": {
+    "$date": "2024-08-02T05:00:00.000Z"
+  },
+  "_class": "com.estrasys.authentication.entity.RoleDocument"
+}]
