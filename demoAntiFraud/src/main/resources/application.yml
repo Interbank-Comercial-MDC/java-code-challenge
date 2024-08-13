@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: antifraude
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/antifraudedb
+    username: postgres
+    password: postgres
+    pool:
+      enabled: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: antifraudeGroup
+      auto-offset-reset: earliest
