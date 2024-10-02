@@ -1,0 +1,26 @@
+# Ignore IDE configuration
+.vscode/
+
+# Ignore build directories for Spring Boot
+**/target/
+**/out/
+
+# Ignore Docker files
+*.tar
+*.log
+docker-compose.override.yml
+
+# Ignore local configuration files for Spring Boot
+**/application-local.properties
+**/application-dev.properties
+**/application-test.properties
+
+# Ignore dependency directories
+/.mvn/
+.mvn/
+
+# Ignore environmental variables
+.env
+
+# Ignore test output
+/test-output/
