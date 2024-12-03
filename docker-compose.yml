@@ -1,16 +1,28 @@
-version: "3.7"
 services:
-  postgres:
+  server_postgres:
     image: postgres:14
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - microservices-net
   zookeeper:
     image: confluentinc/cp-zookeeper:5.5.3
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - microservices-net
   kafka:
     image: confluentinc/cp-enterprise-kafka:5.5.3
     depends_on: [zookeeper]
@@ -23,6 +35,24 @@ services:
       KAFKA_JMX_PORT: 9991
     ports:
       - 9092:9092
+    networks:
+      - microservices-net
+  kafka-topics-init:
+    image: confluentinc/cp-kafka:5.5.3
+    depends_on:
+      - kafka
+    entrypoint: >
+      bash -c "
+      kafka-topics --create --topic topic-crea-transaction --bootstrap-server kafka:29092 --partitions 3 --replication-factor 1 &&
+      kafka-topics --create --topic topic-valida-transaction --bootstrap-server kafka:29092 --partitions 3 --replication-factor 1
+      "
+    networks:
+      - microservices-net
+
 volumes:
-  oracle-data:
-  oracle-backup:
+  postgres_data:
+
+networks:
+  microservices-net:
+    driver: bridge
+
